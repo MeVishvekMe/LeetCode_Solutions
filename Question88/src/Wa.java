@@ -31,7 +31,6 @@ public class Wa {
             ptr2--;
             i--;
         }
-        System.out.println(Arrays.toString(nums1));
     }
 
 }
