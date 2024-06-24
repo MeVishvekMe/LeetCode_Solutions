@@ -17,10 +17,13 @@ public class Main {
         root2.right.right = new TreeNode(8);
         root2.right.left.left = new TreeNode(9);
 
+        // Testing BFS methods
         BFS bfs = new BFS();
-        bfs.bfs(root1);
+        bfs.bfsWithoutDepth(root1);
         System.out.println();
-        bfs.bfs(root2);
-
+        bfs.bfsWithoutDepth(root2);
+        System.out.println();
+        bfs.bfsWithDepth(root1);
+        bfs.bfsWithDepth(root2);
     }
 }
