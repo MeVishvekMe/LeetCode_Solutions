@@ -4,6 +4,7 @@ import java.util.List;
 class Solution {
     public List<String> summaryRanges(int[] nums) {
         List<String> result = new ArrayList<>();
+        StringBuilder s = new StringBuilder();
         int i = 0;
         int j = 0;
         while(j < nums.length) {
@@ -12,11 +13,14 @@ class Solution {
             }
             else {
                 if(i == j) {
-                    result.add(nums[i] + "");
+                    s.append(nums[i]);
+                    result.add(s.toString());
                 }
                 else {
-                    result.add(nums[i] + "->" + nums[j]);
+                    s.append(nums[i]).append("->").append(nums[j]);
+                    result.add(s.toString());
                 }
+                s.delete(0, s.length());
                 j++;
                 i = j;
             }
