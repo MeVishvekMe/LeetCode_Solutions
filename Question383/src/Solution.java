@@ -1,30 +1,20 @@
-import java.util.HashMap;
 public class Solution {
     public boolean canConstruct(String ransomNote, String magazine) {
-        HashMap<Character, Integer> map = new HashMap<>();
+        int[] storage = new int[26];
         int i = 0;
         while(i < magazine.length()) {
-            if(!map.containsKey(magazine.charAt(i))) {
-                map.put(magazine.charAt(i), 1);
-            }
-            else {
-                map.put(magazine.charAt(i), map.get(magazine.charAt(i)) + 1);
-            }
+            int current = magazine.charAt(i) - 'a';
+            storage[current]++;
             i++;
         }
         i = 0;
-        while(i < ransomNote.length()) {
-            char currentChar = ransomNote.charAt(i);
-            if(!map.containsKey(currentChar)) {
+        while(i < ransomNote.length()){
+            int current = ransomNote.charAt(i) - 'a';
+            if(storage[current] == 0){
                 return false;
             }
-            else {
-                if(map.get(currentChar) == 0) {
-                    return false;
-                }
-                map.put(currentChar, map.get(currentChar) - 1);
-                i++;
-            }
+            storage[current]--;
+            i++;
         }
         return true;
     }
