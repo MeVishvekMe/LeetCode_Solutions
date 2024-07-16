@@ -1,34 +1,28 @@
-public class Solution {
+class Solution {
   public void rotate(int[] nums, int k) {
 
-    // converting k to its true value
+    // converting k to its original value
     // k = 8 is equal to k = 1
-    int div = k / nums.length;
-    if(div > 0) {
-      k = k - (div * nums.length);
-    }
+    k = k % nums.length;
 
-    // storing the (nums.length - k) elements of nums array in a temp array
-    int[] tempArr = new int[nums.length - k];
-    int i = 0;
-    while(i < tempArr.length) {
-      tempArr[i] = nums[i];
-      i++;
-    }
+    // reversing whole array
+    reverse(0, nums.length - 1, nums);
 
-    // taking the elements from kth index to last, and placing them on first
-    i = 0;
-    while(i < k) {
-      nums[i] = nums[nums.length - k + i];
+    // reversing the first k elements
+    reverse(0, k - 1, nums);
+
+    // reversing the remaining elements
+    reverse(k, nums.length - 1, nums);
+
+  }
+
+  public void reverse(int i, int j, int[] nums) {
+    while(i < j) {
+      int temp = nums[i];
+      nums[i] = nums[j];
+      nums[j] = temp;
       i++;
-    }
-    // after kth index, placing all the copied values in array
-    i = k;
-    int j = 0;
-    while(i < nums.length) {
-      nums[i] = tempArr[j];
-      j++;
-      i++;
+      j--;
     }
   }
 }
