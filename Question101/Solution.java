@@ -1,5 +1,4 @@
 public class Solution {
-    boolean result = true;
     public boolean isSymmetric(TreeNode root) {
         return checkSym(root.left, root.right);
     }
