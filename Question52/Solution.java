@@ -1,12 +1,6 @@
 public class Solution {
     int result = 0;
     public int totalNQueens(int n) {
-        if(n == 1) {
-            return 1;
-        }
-        if(n == 2) {
-            return 0;
-        }
         int[][] arr = new int[n][n];
         helper(arr, 0, n);
         return result;
