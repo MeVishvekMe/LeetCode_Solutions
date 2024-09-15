@@ -4,7 +4,7 @@ public class Solution {
         String[] symbols = {"I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "CD", "D", "CM", "M"};
         int i = 12;
         StringBuilder result = new StringBuilder();
-        while(i > -1) {
+        while(i > -1 && num != 0) {
             int count = num / numbers[i];
             if(count > 0) {
                 int j = 0;
