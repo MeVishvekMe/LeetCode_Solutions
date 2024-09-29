@@ -5,36 +5,68 @@ public class Solution {
     public List<String> fullJustify(String[] words, int maxWidth) {
         List<String> result = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
+        
         int left = 0;
-        int total = 0;
-        int carry = 0;
         int right = 0;
+        int wordsCount = 0;
+        int spaces = 0;
+        
         while(left < words.length && right < words.length) {
-            total += words[right].length();
-            if(total + carry > maxWidth) {
-                right--;
-                int num = right - left + 1;
-                int spaces = (maxWidth - total) / (num - 1);
+            wordsCount += words[right].length();
+            if(wordsCount + spaces >= maxWidth) {
+                if(wordsCount + spaces - 1 < maxWidth) {
+                    spaces--;
+                }
+                else {
+                    wordsCount -= words[right].length();
+                    right--;
+                }
+                
+                int spacePut = (left == right) ? (maxWidth - wordsCount) : (maxWidth - wordsCount) / (right - left);
+                int extraSpaces = (left == right) ? 0 : (maxWidth - wordsCount) % (right - left);
                 int i = left;
-                while(i < right) {
+                while(i <= right) {
                     sb.append(words[i]);
+                    if(sb.length() == maxWidth) {
+                        break;
+                    }
                     int j = 0;
-                    while(j < spaces) {
+                    while(j < spacePut) {
                         sb.append(" ");
                         j++;
                     }
+                    if(extraSpaces != 0) {
+                        sb.append(" ");
+                        extraSpaces--;
+                    }
                     i++;
                 }
-                sb.append(words[i]);
                 result.add(sb.toString());
                 sb = new StringBuilder();
-                System.out.println(result);
+                wordsCount = 0;
+                spaces = -1;
+                left = right + 1;
             }
-            carry++;
-            System.out.println(right);
+            spaces++;
             right++;
-            
         }
-        return null;
+        right--;
+        if(left >= words.length) {
+            return result;
+        }
+        int i = left;
+        while(i <= right) {
+            sb.append(words[i]);
+            sb.append(" ");
+            i++;
+        }
+        sb.deleteCharAt(sb.length() - 1);
+        i = sb.length();
+        while(i < maxWidth) {
+            sb.append(" ");
+            i++;
+        }
+        result.add(sb.toString());
+        return result;
     }
 }
