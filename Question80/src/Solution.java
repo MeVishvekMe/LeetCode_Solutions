@@ -1,27 +1,14 @@
-import java.util.Arrays;
-
-public class Solution {
-  public int removeDuplicates(int[] nums) {
-    int i = 0;
-    int k = 0;
-    int val = nums[0];
-    int count = 0;
-    while(i < nums.length) {
-      if(nums[i] == val) {
-        if(count > 1) {
-          i++;
-          continue;
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        int k = 0;
+        for(int num : nums) {
+            // nums should have minimum of 2 elements, that's why put the codition k < 2.
+            // we don't know if we've put duplicate elements or distinct elements in the last 2 indices
+            // so we compare the current element with k - 2 element.
+            if(k < 2 || nums[k - 2] < num) {
+                nums[k++] = num;
+            }
         }
-        nums[k] = nums[i];
-        k++;
-        count++;
-        i++;
-      }
-      else {
-        val = nums[i];
-        count = 0;
-      }
+        return k;
     }
-    return k;
-  }
 }

@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="86a89220-6693-4196-8379-2fcb2fca4b8a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Wa.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Question80/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Question80/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Question80/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Question80/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Question80/Question80.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Question80/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Question80/src/Solution.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +70,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1730700867450</updated>
-      <workItem from="1730700868476" duration="379000" />
+      <workItem from="1730700868476" duration="4058000" />
     </task>
     <servers />
   </component>
