@@ -1,40 +1,47 @@
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode temp1 = null;
-        ListNode temp2 = null;
-        ListNode sumTemp = null;
-        ListNode sumList = new ListNode(-1);
-        sumTemp = sumList;
-        temp1 = l1;
-        temp2 = l2;
-        int carry = 0;
-        while (temp1 != null && temp2 != null) {
-            int result = temp1.val + temp2.val + carry;
-            sumTemp.next = new ListNode(result % 10);
-            sumTemp = sumTemp.next;
-            carry = result / 10;
-            temp1 = temp1.next;
-            temp2 = temp2.next;
-        }
-        while (temp1 != null) {
-            int result = temp1.val + carry;
-            sumTemp.next = new ListNode(result % 10);
-            sumTemp = sumTemp.next;
-            carry = result / 10;
-            temp1 = temp1.next;
-        }
-        while (temp2 != null) {
-            int result = temp2.val + carry;
-            sumTemp.next = new ListNode(result % 10);
-            sumTemp = sumTemp.next;
-            carry = result / 10;
-            temp2 = temp2.next;
-        }
-        if (carry != 0) {
-            sumTemp.next = new ListNode(carry);
+        // Create a separate LinkedList for sum of l1 and l2
+        ListNode dummy = new ListNode(-1);
+        ListNode temp = dummy;
 
+        // Carry variable keep updating in every iteration
+        int carry = 0;
+
+        while(l1 != null || l2 != null) {
+            // Make a sum and update it
+            int sum = 0;
+
+            // Keep adding the value of the current node if != null
+            // Update the pointers to the next digit as well
+            if(l1 != null) {
+                sum += l1.val;
+                l1 = l1.next;
+            }
+            if(l2 != null) {
+                sum += l2.val;
+                l2 = l2.next;
+            }
+
+            // Add carry now
+            sum += carry;
+
+            // Update the digit to add to the summed LinkedList
+            int digit = sum % 10;
+
+            // Update carry
+            carry = sum / 10;
+
+            // Create a new Node and update it to the dummy node
+            temp.next = new ListNode(digit);
+            temp = temp.next;
         }
-        sumList  = sumList.next;
-        return sumList;
+
+        // Check for carry
+        if(carry != 0) {
+            temp.next  = new ListNode(carry);
+        }
+
+        // Return dummy.next
+        return dummy.next;
     }
 }
