@@ -1,22 +1,41 @@
 import java.util.Stack;
 
 public class Solution {
+    // Function to check if the given string of brackets is valid
     public boolean isValid(String s) {
-        if(s.length() % 2 != 0) // check if the length of the string is an odd number then return false
+        // If the string length is odd, it cannot be valid
+        if (s.length() % 2 != 0) {
             return false;
-        Stack<Character> stack = new Stack<>(); // create a char stack
-        for(char c : s.toCharArray()) {
-            if(c == '(' || c == '{' || c == '[') // check of any opening braces, if there are then push in stack
-                stack.push(c);
-            else if(c == ')' && !stack.isEmpty() && stack.peek() == '(') // for all the 3 else ifs
-                stack.pop();
-            else if(c == '}' && !stack.isEmpty() && stack.peek() == '{') // checking if stack.peek is opening brace and c is the corresponding closing brace
-                stack.pop();
-            else if(c == ']' && !stack.isEmpty() && stack.peek() == '[')
-                stack.pop();
-            else // if none, then return false including the cases like, ]], })], etc.
-                return false;
         }
+
+        // Stack to keep track of opening brackets
+        Stack<Character> stack = new Stack<>();
+
+        // Iterate through each character in the string
+        for (int i = 0; i < s.length(); i++) {
+            char currentChar = s.charAt(i);
+
+            // If the character is an opening bracket, push it onto the stack
+            if (currentChar == '(' || currentChar == '[' || currentChar == '{') {
+                stack.push(currentChar);
+            }
+            // If the character is a closing bracket, check for a matching opening bracket
+            else if (currentChar == ')' && !stack.isEmpty() && stack.peek() == '(') {
+                stack.pop(); // Pop the matching opening bracket from the stack
+            }
+            else if (currentChar == ']' && !stack.isEmpty() && stack.peek() == '[') {
+                stack.pop(); // Pop the matching opening bracket from the stack
+            }
+            else if (currentChar == '}' && !stack.isEmpty() && stack.peek() == '{') {
+                stack.pop(); // Pop the matching opening bracket from the stack
+            }
+            // If none of the above conditions are met, the string is invalid
+            else {
+                return false;
+            }
+        }
+
+        // If the stack is empty, all brackets are matched; otherwise, it's invalid
         return stack.isEmpty();
     }
 }
