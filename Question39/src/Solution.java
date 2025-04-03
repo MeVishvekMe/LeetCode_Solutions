@@ -1,47 +1,32 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
-public class Solution {
-    // List for adding sub-lists
-    List<List<Integer>> result = new ArrayList<>();
-
+class Solution {
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        // Sorting the array
-        Arrays.sort(candidates);
-
-        // Maintaining a currentList in which elements will be added and removed
-        List<Integer> currentList = new ArrayList<>();
-
-        // First call
-        helper(0, candidates, target, currentList);
-
-        return result;
+        List<List<Integer>> result = new ArrayList<>(); // List to store all valid combinations
+        backtracking(0, candidates, target, new ArrayList<>(), result); // Start backtracking
+        return result; // Return the list of valid combinations
     }
-
-
-    public void helper(int currentIndex, int[] candidates, int target, List<Integer> currentList) {
-        // Check for target
-        if(target == 0) {
-            result.add(new ArrayList<>(currentList));
+    
+    private void backtracking(int start, int[] candidates, int target, List<Integer> currentList, List<List<Integer>> result) {
+        // Base case: If the target becomes 0, we found a valid combination
+        if (target == 0) {
+            result.add(new ArrayList<>(currentList)); // Add a copy of the current list to the result
             return;
         }
-        int i = currentIndex;
-        while(i < candidates.length && candidates[i] <= target) {
-            // Add current element to the list
+
+        // If the target becomes negative, stop recursion (no valid combination)
+        if (target < 0) return;
+
+        // Iterate through candidates, starting from 'start' to avoid duplicate subsets
+        for (int i = start; i < candidates.length; i++) {
+            // Choose the current number
             currentList.add(candidates[i]);
 
-            // Keep subtracting target when calling
-            helper(i, candidates, target - candidates[i], currentList);
+            // Recur with the same index (i) since we can reuse the same element
+            backtracking(i, candidates, target - candidates[i], currentList, result);
 
-            // Remove the recent element
-            currentList.removeLast();
-            
-            i++;
+            // Undo the last choice (backtrack) to explore other possibilities
+            currentList.remove(currentList.size() - 1);
         }
     }
-
-
-
-
 }
